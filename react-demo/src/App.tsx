@@ -6,6 +6,7 @@ import Products from "./pages/Products/Products";
 import Users from "./pages/Users/Users";
 import Error from "./pages/Error/Error";
 import Contact from "./pages/Contact/Contact";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/users" element={<Users />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/products" element={<Products />} />
+            <Route path="/users" element={<Users />} />
+          </Route>
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error />} />
